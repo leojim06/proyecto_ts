@@ -1,0 +1,33 @@
+{
+  "name": "heroes_vs_villanos",
+  "version": "1.0.0",
+  "description": "Proyecto de entrenamiento y autoaprendizaje sobre ts",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leojim06/proyecto_ts.git"
+  },
+  "author": "leojim06",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/leojim06/proyecto_ts/issues"
+  },
+  "homepage": "https://github.com/leojim06/proyecto_ts#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "mongoose": "^4.5.10",
+    "morgan": "^1.7.0"
+  },
+  "devDependencies": {
+    "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-nodemon": "^2.1.0",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-typescript": "^2.13.6",
+    "run-sequence": "^1.2.2"
+  }
+}
