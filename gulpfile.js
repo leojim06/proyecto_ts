@@ -42,7 +42,7 @@ gulp.task('build:client', function () {
 
 // copia los archivos necesarios a dist
 gulp.task('deploy', function () {
-    return gulp.src(['./client/index.html', './client/systemjs.config.js'])
+    return gulp.src(['./client/**/*.{css,html}', './client/systemjs.config.js'])
         .pipe(gulp.dest('dist/public'))
 });
 
@@ -67,15 +67,16 @@ gulp.task('copy:libs', function () {
     return merge(angular, rxjs);
 });
 
-gulp.task('copy:bootstrap', function() {
+gulp.task('copy:bootstrap', function () {
     let bootstrap = './node_modules/bootstrap/dist';
-    gulp.src(bootstrap + '/css/bootstrap.min.css').pipe(gulp.dest(cssPath));
+    gulp.src(bootstrap + '/css/bootstrap.min.{css,map}').pipe(gulp.dest(cssPath));
     gulp.src(bootstrap + '/js/bootstrap.min.js').pipe(gulp.dest(libPath + '/bootstrap'));
 
 });
 
 gulp.task('build', function (callback) {
-    runSequence('clean', 'build:server', 'copy:libs', 'copy:bootstrap', 'build:client', 'deploy', callback);
+    // runSequence('clean', 'build:server', 'copy:libs', 'copy:bootstrap', 'build:client', 'deploy', callback);
+    runSequence('build:client', 'deploy', callback);
 });
 
 gulp.task('default', ['build']);
