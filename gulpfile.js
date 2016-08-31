@@ -18,6 +18,10 @@ gulp.task('clean', function () {
     return del('dist');
 });
 
+gulp.task('clean:client', function () {
+    return del('dist/public/app');
+});
+
 // Construcción del SERVER en la carpeta dist
 gulp.task('build:server', function () {
     let tsProyect = ts.createProject('server/tsconfig.json');
@@ -64,14 +68,17 @@ gulp.task('copy:libs', function () {
     gulp.src('./node_modules/jquery/dist/jquery.min.js').pipe(gulp.dest(libPath + '/jquery'));
     gulp.src('./node_modules/jquery/dist/jquery.min.map').pipe(gulp.dest(libPath + '/jquery'));
 
+    // Font awesome
+    gulp.src('./node_modules/font-awesome/css/*').pipe(gulp.dest(libPath + '/font-awesome/css'));
+    gulp.src('./node_modules/font-awesome/fonts/*').pipe(gulp.dest(libPath + '/font-awesome/fonts'));
+
     return merge(angular, rxjs);
 });
 
 gulp.task('copy:bootstrap', function () {
-    let bootstrap = './node_modules/bootstrap/dist';
-    gulp.src(bootstrap + '/css/bootstrap.min.{css,map}').pipe(gulp.dest(cssPath));
-    gulp.src(bootstrap + '/js/bootstrap.min.js').pipe(gulp.dest(libPath + '/bootstrap'));
-
+    let bootstrap = './node_modules/bootstrap';
+    gulp.src(bootstrap + '/dist/css/bootstrap.min.{css,map}').pipe(gulp.dest(cssPath));
+    gulp.src(bootstrap + '/dist/js/bootstrap.min.js').pipe(gulp.dest(libPath + '/bootstrap/js'));
 });
 
 gulp.task('build', function (callback) {

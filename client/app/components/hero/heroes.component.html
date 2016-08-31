@@ -1,13 +1,42 @@
-<h2>My Heroes</h2>
-<ul class="heroes">
-    <li *ngFor="let hero of heroes" [class.selected]="hero === selectedHero" (click)="onSelect(hero)">
-        <span class="badge">{{hero._id}}</span> {{hero.name}}
-    </li>
-</ul>
+<section>
+    <h2>Lista de Heroes</h2>
 
-<div *ngIf="selectedHero">
-    <h2>
-        {{selectedHero.name | uppercase}} is my hero
-    </h2>
-    <button (click)="gotoDetail()">View Details</button>
-</div>
+    <div>
+        <h3>
+            <i class="fa fa-plus"></i>
+        </h3>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Poder</th>
+                <th>Personas Salvadas</th>
+                <th>Editar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let hero of heroes">
+                <td>{{ hero._id }}</td>
+                <td>{{ hero.name }}</td>
+                <td>{{ hero.power }}</td>
+                <td>{{ hero.amountPeopleSaved }}</td>
+                <td>
+                    <a routerLink="/hero/edit/{{hero._id}}" routerLinkActive="active"  >
+                        <i class="fa fa-pencil"></i>
+                    </a>
+
+                    <a>
+                        <i class="fa fa-trash"></i>
+                    </a>
+
+                    <a routerLink="/hero/detail/{{hero._id}}" routerLinkActive="active"  >
+                        <i class="fa fa-search"></i>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>

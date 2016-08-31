@@ -1,6 +1,7 @@
 # Own
 typings
 dist
+.vscode
 
 # Logs
 logs

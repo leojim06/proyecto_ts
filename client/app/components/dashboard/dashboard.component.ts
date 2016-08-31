@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Hero } from '../../models/hero';
+import { IHero } from '../../models/hero';
 import { HeroService } from '../../services/hero.service';
 
 @Component({
@@ -14,7 +14,7 @@ import { HeroService } from '../../services/hero.service';
 
 export class DashboardComponent implements OnInit {
 
-    heroes: Hero[] = [];
+    heroes: IHero[] = [];
 
     constructor(
         private router: Router,
@@ -22,7 +22,7 @@ export class DashboardComponent implements OnInit {
 
     ngOnInit(): void {
         this.heroService.getHeroes()
-            .subscribe((heroes: Hero[]) => {
+            .subscribe((heroes: IHero[]) => {
                 this.heroes = heroes;
             },
             error => {
@@ -30,8 +30,9 @@ export class DashboardComponent implements OnInit {
             });
     }
 
-    gotoDetail(hero: Hero): void {
-        let link = ['/detail', hero._id];
+    gotoDetail(hero: IHero): void {
+        let link = ['/hero/detail', hero._id];
         this.router.navigate(link);
+        // this.router.navigate(['/detail', hero._id]);
     }
 }

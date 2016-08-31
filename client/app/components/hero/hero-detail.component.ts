@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 
 import { HeroService } from '../../services/hero.service';
-import { Hero } from '../../models/hero';
+import { IHero } from '../../models/hero';
 
 @Component({
     moduleId: module.id,
@@ -11,7 +11,7 @@ import { Hero } from '../../models/hero';
     styleUrls: ['hero-detail.component.css']
 })
 export class HeroDetailComponent implements OnInit {
-    private hero: Hero;
+    private hero: IHero;
 
     constructor(
         private heroService: HeroService,
@@ -22,7 +22,7 @@ export class HeroDetailComponent implements OnInit {
         this.route.params.forEach((params: Params) => {
             let _id = params['_id'];
             this.heroService.getHero(_id)
-                .subscribe((hero: Hero) => {
+                .subscribe((hero: IHero) => {
                     this.hero = hero;
                 },
                 error => {

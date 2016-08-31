@@ -1,4 +1,4 @@
-export interface Hero {
+export interface IHero {
     _id: string;
     name: string;
     power: string;

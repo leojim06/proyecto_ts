@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
-import { Hero } from '../models/hero';
+import { IHero } from '../models/hero';
 
 import { ConfigService } from './config.service';
 
@@ -21,17 +21,15 @@ export class HeroService {
         this.heroUrl = `${configService.getApiURI()}/heroes`;
     }
 
-    getHeroes(): Observable<Hero[]> {
+    getHeroes(): Observable<IHero[]> {
         return this.http.get(this.heroUrl)
             .map((res: Response) => {
-                console.log({"heroes" : res.json});
                 return res.json();
             })
             .catch(this.handleError);
     }
     
-    getHero(_id: string) : Observable<Hero> {
-        console.log(`ID a buscar ${_id}`);
+    getHero(_id: string) : Observable<IHero> {
         return this.http.get(`${this.heroUrl}/${_id}`)
             .map((res: Response) => {
                 return res.json();

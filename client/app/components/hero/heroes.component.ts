@@ -1,42 +1,44 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ROUTER_DIRECTIVES, Router } from '@angular/router';
 
-import { Hero } from '../../models/hero';
+import { IHero } from '../../models/hero';
 import { HeroService } from '../../services/hero.service';
 
 @Component({
-  moduleId: module.id,
-  selector: 'my-heroes',
-  templateUrl: 'heroes.component.html',
-  styleUrls: ['heroes.component.css']
+    moduleId: module.id,
+    selector: 'my-heroes',
+    templateUrl: 'heroes.component.html',
+    styleUrls: ['heroes.component.css'],
+    directives: [ROUTER_DIRECTIVES]
 })
 export class HeroesComponent implements OnInit {
 
-  heroes: Hero[];
-  selectedHero: Hero;
+    heroes: IHero[];
+    selectedHero: IHero;
 
-  constructor(
-    private router: Router,
-    private heroService: HeroService) { }
+    constructor(
+        private router: Router,
+        private heroService: HeroService) { }
 
-  onSelect(hero: Hero): void {
-    this.selectedHero = hero;
-  }
+    ngOnInit(): void {
+        this.getHeroes();
+    }
 
-  ngOnInit(): void {
-    this.getHeroes();
-  }
+    getHeroes(): void {
+        this.heroService.getHeroes()
+            .subscribe((heroes: IHero[]) => {
+                this.heroes = heroes;
+            },
+            error => {
+                console.log('Error: ' + error);
+            });
+    }
 
-  getHeroes(): void {
-    this.heroService.getHeroes().subscribe((heroes: Hero[]) => {
-        this.heroes = heroes;
-      },
-      error => {
-        console.log('Error: ' + error);
-      });
-  }
+    // gotoDetail(hero: IHero): void {
+    //     this.router.navigate(['hero/detail', hero._id]);
+    // }
 
-  gotoDetail(): void {
-    this.router.navigate(['/detail', this.selectedHero._id]);
-  }
+    // gotoEdit(hero: IHero): void {
+    //     this.router.navigate(['hero/edit', hero._id]);
+    // }
 }
