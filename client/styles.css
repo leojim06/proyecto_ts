@@ -20,3 +20,24 @@ body, input[text], button {
 * {
   font-family: Arial, Helvetica, sans-serif;
 }
+
+
+
+.huge {
+  font-size: 24px;
+}
+.panel-green {
+  border-color: #5cb85c;
+}
+.panel-green > .panel-heading {
+  padding: 10px 20px 0px 10px;
+  border-color: #5cb85c;
+  color: whitesmoke;
+  background-color: #5cb85c;
+}
+.panel-green > a {
+  color: #5cb85c;
+}
+.panel-green > a:hover {
+  color: #0A360A;
+}

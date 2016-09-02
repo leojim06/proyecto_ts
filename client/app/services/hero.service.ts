@@ -23,17 +23,41 @@ export class HeroService {
 
     getHeroes(): Observable<IHero[]> {
         return this.http.get(this.heroUrl)
-            .map((res: Response) => {
-                return res.json();
-            })
+            .map((res: Response) => { return res.json(); })
             .catch(this.handleError);
     }
-    
-    getHero(_id: string) : Observable<IHero> {
+
+    getHero(_id: string): Observable<IHero> {
         return this.http.get(`${this.heroUrl}/${_id}`)
-            .map((res: Response) => {
-                return res.json();
-            })
+            .map((res: Response) => { return res.json(); })
+            .catch(this.handleError);
+    }
+
+    createHero(hero: IHero): Observable<IHero> {
+
+        let body = JSON.stringify(hero);
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+
+        return this.http.post(this.heroUrl, body, options)
+            .map((res: Response) => { return res.json(); })
+            .catch(this.handleError);
+    }
+
+    updateHero(hero: IHero): Observable<IHero> {
+
+        let body = hero;
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+
+        return this.http.put(`${this.heroUrl}/${hero._id}`, hero, options)
+            .map((res: Response) => { return res.json(); })
+            .catch(this.handleError);
+    }
+
+    deleteHero(_id: string): Observable<void> {
+        return this.http.delete(`${this.heroUrl}/${_id}`)
+            .map((res: Response) => { return; })
             .catch(this.handleError);
     }
 

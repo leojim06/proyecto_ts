@@ -47,8 +47,6 @@ export class HeroController implements IBaseController<HeroBusiness> {
             heroBusiness.update(_id, hero, (error, result) => {
                 if (error) {
                     res.status(400).send({ "error": error });
-                } else if (!result) {
-                    res.status(404).send({ "error": "Hero no encontrado - no se puede actualizar" });
                 } else {
                     res.status(200).send({ "sucsess": "Hero actualizado", "data": hero });
                 }
@@ -65,9 +63,7 @@ export class HeroController implements IBaseController<HeroBusiness> {
             let heroBusiness = new HeroBusiness();
             heroBusiness.delete(_id, (error, result) => {
                 if (error) {
-                    res.status(500).send({ "error": error });
-                } else if (!result) {
-                    res.status(404).send({ "error": "Hero no encontrado - no se puede borrar" })
+                    res.status(400).send({ "error": error });
                 } else {
                     res.status(200).send({ "success": "Hero borrado" });
                 }

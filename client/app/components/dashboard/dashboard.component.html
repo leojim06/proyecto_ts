@@ -1,8 +1,36 @@
-<h3>Top Heroes</h3>
-<div class="grid grid-pad">
-    <div *ngFor="let hero of heroes" (click)="gotoDetail(hero)" class="col-1-4">
-        <div class="module hero">
-            <h4>{{hero.name}}</h4>
+<section>
+    <div *ngIf="topHeroes" align="center">
+        <h3>Los {{ topHeroes.length }} Mejores Heroes</h3>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div *ngFor="let hero of topHeroes">
+                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                    <div class="panel panel-green">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-user fa-4x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">{{ hero.name }}</div>
+                                    <div>{{ hero.power }} <i class="fa fa-fire fa-2x"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                        <a (click)="gotoDetail(hero)">
+                            <div class="panel-footer">
+                                <span class="pull-left">Detalles</span>
+                                <span class="pull-right">
+                                    <i class="fa fa-arrow-circle-right fa-2x"></i>
+                                </span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
+</section>

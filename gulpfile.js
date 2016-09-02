@@ -69,20 +69,24 @@ gulp.task('copy:libs', function () {
     gulp.src('./node_modules/jquery/dist/jquery.min.map').pipe(gulp.dest(libPath + '/jquery'));
 
     // Font awesome
-    gulp.src('./node_modules/font-awesome/css/*').pipe(gulp.dest(libPath + '/font-awesome/css'));
+    gulp.src('./node_modules/font-awesome/css/font-awesome.min.css').pipe(gulp.dest(libPath + '/font-awesome/css'));
     gulp.src('./node_modules/font-awesome/fonts/*').pipe(gulp.dest(libPath + '/font-awesome/fonts'));
+
+    // Alertify
+    gulp.src('./node_modules/alertify.js/dist/css/alertify.css').pipe(gulp.dest(libPath + '/alertify/css'));
+    gulp.src('./node_modules/alertify.js/dist/js/alertify.js').pipe(gulp.dest(libPath + '/alertify/js'));
+
+    // Bootstrap
+    gulp.src('./node_modules/bootstrap/dist/css/bootstrap.min.*').pipe(gulp.dest(libPath + '/bootstrap/css'));
+    gulp.src('./node_modules/bootstrap/dist/js/bootstrap.min.js').pipe(gulp.dest(libPath + '/bootstrap/js'));
+    gulp.src('./node_modules/bootstrap/dist/fonts/*').pipe(gulp.dest(libPath + '/bootstrap/fonts'));
+
 
     return merge(angular, rxjs);
 });
 
-gulp.task('copy:bootstrap', function () {
-    let bootstrap = './node_modules/bootstrap';
-    gulp.src(bootstrap + '/dist/css/bootstrap.min.{css,map}').pipe(gulp.dest(cssPath));
-    gulp.src(bootstrap + '/dist/js/bootstrap.min.js').pipe(gulp.dest(libPath + '/bootstrap/js'));
-});
-
 gulp.task('build', function (callback) {
-    // runSequence('clean', 'build:server', 'copy:libs', 'copy:bootstrap', 'build:client', 'deploy', callback);
+    // runSequence('clean', 'build:server', 'copy:libs', 'build:client', 'deploy', callback);
     runSequence('build:client', 'deploy', callback);
 });
 

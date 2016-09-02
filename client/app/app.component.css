@@ -1,23 +1,54 @@
-h2 {
-  font-size: 2em;
-  margin-top: 0;
-  padding-top: 0;
+.center {
+    margin: auto;
+    width: 50%;
 }
-nav a {
-  padding: 5px 10px;
-  text-decoration: none;
-  margin-top: 10px;
-  display: inline-block;
-  background-color: #eee;
-  border-radius: 4px;
+
+
+.huge-4x {
+  font-size: 20px;
 }
-nav a:visited, a:link {
-  color: #607D8B;
+/*panel green*/
+.panel-green {
+  border-color: #5cb85c;
 }
-nav a:hover {
-  color: #039be5;
-  background-color: #CFD8DC;
+.panel-green > .panel-body {
+  border-color: #5cb85c;
+  color: white;
+  background-color: #5cb85c;
 }
-nav a.active {
-  color: #039be5;
+.panel-green > a {
+  color: #5cb85c;
+}
+.panel-green > a:hover {
+  color: #3d8b3d;
+}
+/*panel red*/
+.red {
+  border-color: #d9534f;
+}
+.red > .panel-body {
+  border-color: #d9534f;
+  color: white;
+  background-color: #d9534f;
+}
+.red > a {
+  color: #d9534f;
+}
+.red > a:hover {
+  color: #b52b27;
+}
+/*panel yelow*/
+.panel-yellow {
+  border-color: #f0ad4e;
+}
+.panel-yellow > .panel-body {
+  border-color: #f0ad4e;
+  color: white;
+  background-color: #f0ad4e;
+}
+.panel-yellow > a {
+  color: #f0ad4e;
+}
+.panel-yellow > a:hover {
+  color: #df8a13;
 }

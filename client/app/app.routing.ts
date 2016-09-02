@@ -4,7 +4,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { HeroesComponent } from './components/hero/heroes.component';
 import { DashboardComponent} from './components/dashboard/dashboard.component';
 import { HeroDetailComponent } from './components/hero/hero-detail.component';
-import { HeroFormComponent } from './components/hero/hero-form.component';
+import { HeroUpdateComponent } from './components/hero/hero-update.component';
+import { HeroCreateComponent } from './components/hero/hero-create.component';
 
 const appRoutes: Routes = [
     {
@@ -26,7 +27,11 @@ const appRoutes: Routes = [
     },
     {
         path: 'hero/edit/:_id',
-        component: HeroFormComponent
+        component: HeroUpdateComponent
+    },
+    {
+        path: 'hero/create',
+        component: HeroCreateComponent
     }
 ];
 

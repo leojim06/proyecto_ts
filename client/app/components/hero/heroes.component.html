@@ -1,13 +1,16 @@
 <section>
-    <h2>Lista de Heroes</h2>
-
-    <div>
-        <h3>
-            <i class="fa fa-plus"></i>
-        </h3>
+    <div class="row">
+        <div class="col-md-9">
+            <h2>Lista de Heroes</h2>
+        </div>
+        <div class="col-md-3">
+            <a routerLink="/hero/create" routerLinkActive="active"
+                class="btn btn-success">
+                <span class=""><i class="fa fa-plus fa-2x" aria-hidden="true"></i></span>
+            </a>
+        </div>
     </div>
-
-    <table class="table">
+    <table class="table table-striped table-hover table-bordered">
         <thead>
             <tr>
                 <th>ID</th>
@@ -21,19 +24,19 @@
             <tr *ngFor="let hero of heroes">
                 <td>{{ hero._id }}</td>
                 <td>{{ hero.name }}</td>
-                <td>{{ hero.power }}</td>
-                <td>{{ hero.amountPeopleSaved }}</td>
-                <td>
-                    <a routerLink="/hero/edit/{{hero._id}}" routerLinkActive="active"  >
-                        <i class="fa fa-pencil"></i>
+                <td align="center">{{ hero.power }}</td>
+                <td align="center">{{ hero.amountPeopleSaved }}</td>
+                <td align="center">
+                    <a routerLink="/hero/edit/{{hero._id}}" routerLinkActive="active" class="btn btn-default" role="button">
+                        <i class="fa fa-pencil fa-2x"></i>
                     </a>
 
-                    <a>
-                        <i class="fa fa-trash"></i>
+                    <a routerLink="/hero/detail/{{hero._id}}" routerLinkActive="active" class="btn btn-primary" role="button">
+                        <i class="fa fa-search fa-2x"></i>
                     </a>
 
-                    <a routerLink="/hero/detail/{{hero._id}}" routerLinkActive="active"  >
-                        <i class="fa fa-search"></i>
+                    <a (click)="deleteHero(hero)" class="btn btn-danger" role="button">
+                        <i class="fa fa-trash fa-2x"></i>
                     </a>
                 </td>
             </tr>

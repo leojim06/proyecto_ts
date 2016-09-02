@@ -4,13 +4,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent }  from './app.component';
-import { HeroesComponent } from './components/hero/heroes.component';
-import { HeroDetailComponent } from './components/hero/hero-detail.component';
 import { HeroService } from './services/hero.service';
 import { ConfigService } from './services/config.service';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 
-import { HeroFormComponent } from './components/hero/hero-form.component';
+import { HeroesComponent } from './components/hero/heroes.component';
+import { HeroFormComponent } from './forms/hero-form.component';
+import { HeroDetailComponent } from './components/hero/hero-detail.component';
+import { HeroUpdateComponent } from './components/hero/hero-update.component';
+import { HeroCreateComponent } from './components/hero/hero-create.component';
 
 import { routing } from './app.routing';
 
@@ -24,10 +26,12 @@ import { routing } from './app.routing';
     ],
     declarations: [
         AppComponent,
-        HeroDetailComponent,
-        HeroesComponent,
         DashboardComponent,
-        HeroFormComponent
+        HeroesComponent,
+        HeroFormComponent,
+        HeroDetailComponent,
+        HeroUpdateComponent,
+        HeroCreateComponent,
     ],
     providers: [
         ConfigService,

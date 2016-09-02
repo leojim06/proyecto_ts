@@ -1,22 +1,51 @@
-<div *ngIf="hero">
-    <h2>{{hero.name}} details!</h2>
-    <div>
-        <div>
-            <label>id:</label>
-            {{hero._id}}
-        </div>
-        <div>
-            <label>power:</label>
-            {{hero.power}}
-        </div>
-        <div>
-            <label>Saved:</label>
-            {{hero.amountPeopleSaved}}
+<article *ngIf="hero">
+    <div class="row">
+        <h2>Detalles de {{ hero.name }}</h2>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-offset-1">
+            <div class="form-group">
+                <div align="right">
+                    <label for="heroId" class="control-label col-xs-2">Código: </label>
+                </div>
+                <div class="col-xs-10 ">
+                    <p class="text"> {{ hero._id }} </p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div align="right">
+                    <label for="heroId" class="control-label col-xs-2">Nombre: </label>
+                </div>
+                <div class="col-xs-10 ">
+                    <p class="text"> {{ hero.name }} </p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div align="right">
+                    <label for="heroId" class="control-label col-xs-2">Poder: </label>
+                </div>
+                <div class="col-xs-10 ">
+                    <p class="text"> {{ hero.power }} </p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div align="right">
+                    <label for="heroId" class="control-label col-xs-2">Personas salvadas: </label>
+                </div>
+                <div class="col-xs-10 ">
+                    <p class="text"> {{ hero.amountPeopleSaved }} </p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-xs-2 col-md-offset-2">
+                    <button class="btn btn-primary" (click)="goBack() ">Atras</button>
+                </div>
+            </div>
         </div>
     </div>
-    <div>
-        <label>name: </label>
-        <input [(ngModel)]="hero.name" placeholder="name" />
-    </div>
-    <button (click)="goBack()">Back</button>
-</div>
+</article>

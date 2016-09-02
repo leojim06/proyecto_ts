@@ -20,7 +20,7 @@ export class HeroBusiness implements IBaseBusiness<IHeroModel> {
 
     update(_id: string, item: IHeroModel, callback: (error: any, result: any) => void) {
         this._heroRepository.findById(_id, (err, res) => {
-            if (err || !res) {
+            if (err) {
                 return callback(err, res);
             }
             this._heroRepository.update(res._id, item, callback);
@@ -29,7 +29,7 @@ export class HeroBusiness implements IBaseBusiness<IHeroModel> {
 
     delete(_id: string, callback: (error: any, result: any) => void) {
         this._heroRepository.findById(_id, (err, res) => {
-            if (err || !res) {
+            if (err) {
                 return callback(err, res);
             }
             this._heroRepository.delete(res._id, callback);
