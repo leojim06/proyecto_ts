@@ -1,8 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { REACTIVE_FORM_DIRECTIVES, FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute, Params } from '@angular/router';
 
-import { HeroService } from '../services/hero.service';
 import { IHero } from '../models/hero';
 
 @Component({
@@ -25,9 +23,7 @@ export class HeroFormComponent implements OnInit {
     @Input() hero: IHero;
     @Output() saveHero = new EventEmitter();
 
-    constructor(
-        private _fb: FormBuilder,
-        private heroService: HeroService) {
+    constructor(private _fb: FormBuilder) {
 
         this.formError = {
             'name': '',
@@ -61,8 +57,6 @@ export class HeroFormComponent implements OnInit {
 
 
     buildForm() {
-        console.log(`Existe heroe?: ${typeof this.hero}`);
-
         this.heroForm = this._fb.group({
             name: [this.hero.name, Validators.compose([
                 Validators.required,
@@ -87,8 +81,7 @@ export class HeroFormComponent implements OnInit {
                 if (hasError) {
                     for (let key in this.heroForm.controls[field].errors) {
                         if (this.heroForm.controls[field].errors.hasOwnProperty(key)) {
-                            console.log(this.formError);
-                            this.formError[field] += this._validationMessages[field][key] + ' ' + key;
+                            this.formError[field] += this._validationMessages[field][key];
                         }
                     }
                 }
@@ -104,6 +97,8 @@ export class HeroFormComponent implements OnInit {
                 newHero._id = this.hero._id;
             }
             this.saveHero.emit(newHero)
+        } else {
+            alert('llene el form')
         }
     }
 

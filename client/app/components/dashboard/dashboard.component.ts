@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { IHero } from '../../models/hero';
@@ -18,7 +18,6 @@ export class DashboardComponent implements OnInit {
     topHeroes: IHero[];
 
     constructor(
-        private changeDetectorRef: ChangeDetectorRef,
         private router: Router,
         private heroService: HeroService) { }
 
@@ -27,7 +26,6 @@ export class DashboardComponent implements OnInit {
             .subscribe((heroes: IHero[]) => {
                 this.heroes = heroes;
                 this.topHeroes = this.heroes.slice(0, 3);
-                this.changeDetectorRef.markForCheck();
             },
             error => {
                 console.log('Error en el front-end')
@@ -35,8 +33,6 @@ export class DashboardComponent implements OnInit {
     }
 
     gotoDetail(hero: IHero): void {
-        let link = ['/hero/detail', hero._id];
-        this.router.navigate(link);
-        // this.router.navigate(['/detail', hero._id]);
+        this.router.navigate(['/hero/detail', hero._id]);
     }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from'@angular/core';
+import { Component } from'@angular/core';
 import { Router } from '@angular/router';
 const alertify = require('alertify');
 
@@ -9,12 +9,13 @@ import { HeroFormComponent } from '../../forms/hero-form.component';
 @Component({
     moduleId: module.id,
     selector: 'hero-create',
-    template:`
+    template:
+        `<div *ngIf="hero" >
             <hero-form 
                 [hero] = "hero"
                 (saveHero) = "onSave($event)">
             </hero-form>
-        `,
+        </div>`,
     directives: [HeroFormComponent]
 })
 

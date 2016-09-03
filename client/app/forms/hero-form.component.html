@@ -6,7 +6,7 @@
                 <!-- Name-->
                 <div class="form-group" [ngClass]="{ 'has-error': formError.name }">
                     <label class="control-label" for="hero_name">Nombre</label>
-                    <input class="form-control" id="hero_name" type="text" placeholder="Nombre" formControlName="name">
+                    <input type="text" class="form-control" id="hero_name" placeholder="Nombre" formControlName="name">
                     <span class="help-block" *ngIf="formError.name">{{ formError.name }}</span>
                 </div>
 
@@ -14,20 +14,20 @@
                 <div class="form-grup" [ngClass]="{ 'has-error': formError.power }">
                     <label for="hero_power" class="control-label">Cantidad de poder</label>
                     <input type="text" class="form-control" id="hero_power" placeholder="Cantidad de poder" formControlName="power">
-                    <span class="help-block">{{ formError.power }}</span>
+                    <span class="help-block" *ngIf="formError.power">{{ formError.power }}</span>
                 </div>
 
                 <!-- Amount People Saved-->
                 <div class="form-grup" [ngClass]="{ 'has-error': formError.amountPeopleSaved }">
                     <label for="hero_amountPeopleSaved" class="control-label">Personas salvadas</label>
                     <input type="text" class="form-control" id="hero_amountPeopleSaved" placeholder="Personas salvadas" formControlName="amountPeopleSaved">
-                    <span class="help-block">{{ formError.amountPeopleSaved }}</span>
+                    <span class="help-block" *ngIf="formError.amountPeopleSaved">{{ formError.amountPeopleSaved }}</span>
                 </div>
 
                 <!-- Submit-->
                 <div>
                     <button type="submit" [disabled]='!heroForm.valid' class="btn btn-primary btn-block">{{ buttonTitle }}</button>
-                    <button type="" class="btn btn-danger btn-block" (click)="onCancel()" >Cancelar</button>
+                    <button type="" class="btn btn-danger btn-block" (click)="onCancel()">Cancelar</button>
                 </div>
             </form>
         </div>

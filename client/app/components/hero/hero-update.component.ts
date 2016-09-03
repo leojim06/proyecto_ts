@@ -10,7 +10,7 @@ import { HeroFormComponent } from '../../forms/hero-form.component';
     moduleId: module.id,
     selector: 'hero-create',
     template:
-    `<div *ngIf="hero" >
+        `<div *ngIf="hero" >
             <hero-form 
                 [hero] = "hero"
                 (saveHero) = "onSave($event)">

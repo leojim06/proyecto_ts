@@ -3,40 +3,6 @@
     width: 50%;
 }
 
-
-.huge-4x {
-  font-size: 20px;
-}
-/*panel green*/
-.panel-green {
-  border-color: #5cb85c;
-}
-.panel-green > .panel-body {
-  border-color: #5cb85c;
-  color: white;
-  background-color: #5cb85c;
-}
-.panel-green > a {
-  color: #5cb85c;
-}
-.panel-green > a:hover {
-  color: #3d8b3d;
-}
-/*panel red*/
-.red {
-  border-color: #d9534f;
-}
-.red > .panel-body {
-  border-color: #d9534f;
-  color: white;
-  background-color: #d9534f;
-}
-.red > a {
-  color: #d9534f;
-}
-.red > a:hover {
-  color: #b52b27;
-}
 /*panel yelow*/
 .panel-yellow {
   border-color: #f0ad4e;
@@ -45,10 +11,4 @@
   border-color: #f0ad4e;
   color: white;
   background-color: #f0ad4e;
-}
-.panel-yellow > a {
-  color: #f0ad4e;
-}
-.panel-yellow > a:hover {
-  color: #df8a13;
 }
