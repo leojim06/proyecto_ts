@@ -15,7 +15,7 @@ export class VillainModel {
         return this._villainModel.power;
     }
 
-    public get amountPeopleSaved() : number {
+    public get amountPeopleKilled() : number {
         return this._villainModel.amountPeopleKilled;
     }
 }

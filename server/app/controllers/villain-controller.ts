@@ -12,7 +12,7 @@ export class VillainController implements IBaseController<VillainBusiness> {
                 if (error) {
                     res.status(400).send({ "error": error });
                 } else {
-                    res.status(201).send({ "success": "Hero creado", "data": villain });
+                    res.status(201).send({ "success": "Villano creado", "data": villain });
                 }
             });
         } catch (error) {
@@ -28,7 +28,7 @@ export class VillainController implements IBaseController<VillainBusiness> {
                 if (error) {
                     res.status(400).send({ "error": error });
                 } else if (!result) {
-                    res.status(404).send({ "error": "Heroes no encontrados" });
+                    res.status(404).send({ "error": "Villanos no encontrados" });
                 } else {
                     res.status(200).send(result);
                 }
@@ -47,8 +47,10 @@ export class VillainController implements IBaseController<VillainBusiness> {
             villainBusiness.update(_id, villain, (error, result) => {
                 if (error) {
                     res.status(400).send({ "error": error });
+                } else if (!result) {
+                    res.status(404).send({ "error": "Villano no encontrado - no se puede actualizar" })
                 } else {
-                    res.status(200).send({ "sucsess": "Hero actualizado", "data": villain });
+                    res.status(200).send({ "success": "Villano actualizado" });
                 }
             });
         } catch (error) {
@@ -64,8 +66,10 @@ export class VillainController implements IBaseController<VillainBusiness> {
             villainBusiness.delete(_id, (error, result) => {
                 if (error) {
                     res.status(400).send({ "error": error });
+                } else if (!result) {
+                    res.status(404).send({ "error": "Villano no encontrado - no se puede borrar" })
                 } else {
-                    res.status(200).send({ "success": "Hero borrado" });
+                    res.status(200).send({ "success": "Villano borrado" });
                 }
             });
         } catch (error) {
@@ -82,7 +86,7 @@ export class VillainController implements IBaseController<VillainBusiness> {
                 if (error) {
                     res.status(400).send({ "error": error });
                 } else if (!result) {
-                    res.status(404).send({ "error": "Hero no encontrado" });
+                    res.status(404).send({ "error": "Villano no encontrado" });
                 } else {
                     res.status(200).send(result);
                 }

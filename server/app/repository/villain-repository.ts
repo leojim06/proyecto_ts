@@ -22,7 +22,7 @@ export class VillainRepository implements IBaseRepository<IVillainModel> {
     }
 
     delete(_id: mongoose.Types.ObjectId, callback: (error: any, result: any) => void) {
-        this._model.remove({ _id: _id }, (err) => callback(err, null));
+        this._model.remove({ _id: _id }, (err) => callback(err, _id));
     }
 
     findById(_id: string, callback: (error: any, result: IVillainModel) => void) {

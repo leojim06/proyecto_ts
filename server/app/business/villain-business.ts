@@ -20,7 +20,7 @@ export class VillainBusiness implements IBaseBusiness<IVillainModel> {
 
     update(_id: string, item: IVillainModel, callback: (error: any, result: any) => void) {
         this._villainRepository.findById(_id, (err, res) => {
-            if (err) {
+            if (err || !res) {
                 return callback(err, res);
             }
             this._villainRepository.update(res._id, item, callback);
@@ -29,7 +29,7 @@ export class VillainBusiness implements IBaseBusiness<IVillainModel> {
 
     delete(_id: string, callback: (error: any, result: any) => void) {
         this._villainRepository.findById(_id, (err, res) => {
-            if (err) {
+            if (err || !res) {
                 return callback(err, res);
             }
             this._villainRepository.delete(res._id, callback);

@@ -9,7 +9,7 @@ class VillainSchema {
         let schema = mongoose.Schema({
             name: { type: String, required: true, unique: true },
             power: { type: Number, required: true },
-            amountPeopleSaved: { type: Number, required: true }
+            amountPeopleKilled: { type: Number, required: true }
         });
         return schema;
     }
