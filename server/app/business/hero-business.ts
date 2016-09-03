@@ -1,7 +1,7 @@
-import { HeroRepository } from '../repository/hero_repository';
-import { IBaseBusiness } from './interfaces/base_business';
-import { IHeroModel } from '../models/interfaces/hero_model';
-import * as HeroSchema from '../models/schemas/hero_schema';
+import { HeroRepository } from '../repository/hero-repository';
+import { IBaseBusiness } from './interfaces/base-business';
+import { IHeroModel } from '../models/interfaces/hero-model';
+import * as HeroSchema from '../models/schemas/hero-schema';
 
 export class HeroBusiness implements IBaseBusiness<IHeroModel> {
     private _heroRepository: HeroRepository;
@@ -20,7 +20,7 @@ export class HeroBusiness implements IBaseBusiness<IHeroModel> {
 
     update(_id: string, item: IHeroModel, callback: (error: any, result: any) => void) {
         this._heroRepository.findById(_id, (err, res) => {
-            if (err) {
+            if (err || !res) {
                 return callback(err, res);
             }
             this._heroRepository.update(res._id, item, callback);
@@ -29,7 +29,7 @@ export class HeroBusiness implements IBaseBusiness<IHeroModel> {
 
     delete(_id: string, callback: (error: any, result: any) => void) {
         this._heroRepository.findById(_id, (err, res) => {
-            if (err) {
+            if (err || !res ) {
                 return callback(err, res);
             }
             this._heroRepository.delete(res._id, callback);

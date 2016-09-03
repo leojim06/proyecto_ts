@@ -1,4 +1,4 @@
-import { IHeroModel } from './interfaces/hero_model';
+import { IHeroModel } from './interfaces/hero-model';
 
 export class HeroModel {
     private _heroModel: IHeroModel;
@@ -11,7 +11,7 @@ export class HeroModel {
         return this._heroModel.name;
     }
 
-    public get power() : string {
+    public get power() : number {
         return this._heroModel.power;
     }
 

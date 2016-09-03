@@ -1,7 +1,7 @@
 import * as express from 'express';
-import { HeroBusiness } from '../business/hero_business';
-import { IBaseController } from './interfaces/base_controller';
-import { IHeroModel } from '../models/interfaces/hero_model';
+import { HeroBusiness } from '../business/hero-business';
+import { IBaseController } from './interfaces/base-controller';
+import { IHeroModel } from '../models/interfaces/hero-model';
 
 export class HeroController implements IBaseController<HeroBusiness> {
     create(req: express.Request, res: express.Response): void {
@@ -47,8 +47,10 @@ export class HeroController implements IBaseController<HeroBusiness> {
             heroBusiness.update(_id, hero, (error, result) => {
                 if (error) {
                     res.status(400).send({ "error": error });
+                } else if (!result) {
+                    res.status(404).send({ "error": "Hero no encontrado - no se puede actualizar" })
                 } else {
-                    res.status(200).send({ "sucsess": "Hero actualizado", "data": hero });
+                    res.status(200).send({ "success": "Hero actualizado" });
                 }
             });
         } catch (error) {
@@ -64,6 +66,8 @@ export class HeroController implements IBaseController<HeroBusiness> {
             heroBusiness.delete(_id, (error, result) => {
                 if (error) {
                     res.status(400).send({ "error": error });
+                } else if (!result) {
+                    res.status(404).send({ "error": "Hero no encontrado - no se puede borrar" })
                 } else {
                     res.status(200).send({ "success": "Hero borrado" });
                 }

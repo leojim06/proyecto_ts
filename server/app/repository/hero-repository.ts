@@ -1,6 +1,6 @@
 import * as mongoose from 'mongoose';
-import { IBaseRepository } from './interfaces/base_repository';
-import { IHeroModel } from '../models/interfaces/hero_model';
+import { IBaseRepository } from './interfaces/base-repository';
+import { IHeroModel } from '../models/interfaces/hero-model';
 
 export class HeroRepository implements IBaseRepository<IHeroModel> {
     private _model: mongoose.Model<mongoose.Document>;
@@ -22,7 +22,7 @@ export class HeroRepository implements IBaseRepository<IHeroModel> {
     }
 
     delete(_id: mongoose.Types.ObjectId, callback: (error: any, result: any) => void) {
-        this._model.remove({ _id: _id }, (err) => callback(err, null));
+        this._model.remove({ _id: _id }, (err) => callback(err, _id));
     }
 
     findById(_id: string, callback: (error: any, result: IHeroModel) => void) {

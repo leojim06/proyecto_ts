@@ -1,5 +1,5 @@
 import * as express from 'express';
-import { HeroController } from './../controllers/hero_controller';
+import { HeroController } from './../controllers/hero-controller';
 
 const router = express.Router();
 
