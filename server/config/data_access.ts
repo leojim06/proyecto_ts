@@ -7,7 +7,6 @@ export class DataAccess {
     static mongooseConnection: Mongoose.Connection;
 
     constructor() {
-        DataAccess.connect();
     }
 
     static connect(): Mongoose.Connection {
@@ -16,13 +15,13 @@ export class DataAccess {
         }
 
         this.mongooseConnection = Mongoose.connection;
-        this.mongooseConnection.once('open', () => {
-            console.log('Conectado a mongodb');
-        });
+        this.mongooseConnection.once('open', () => { });
 
-        this.mongooseInstance = Mongoose.connect(Config.DB);
+        process.env.NODE_ENV === 'test' ?
+            this.mongooseInstance = Mongoose.connect(Config.DB_TEST) :
+            this.mongooseInstance = Mongoose.connect(Config.DB);
+
         return this.mongooseInstance;
     }
 }
-
 DataAccess.connect();

@@ -1,21 +1,21 @@
 import * as express from 'express';
-import { VillainController } from './../controllers/villain-controller';
+import { VillanoController } from './../controllers/villano-controller';
 
 const router = express.Router();
 
-export class VillainRoutes {
-    private _villainController: VillainController;
+export class VillanoRoutes {
+    private _villanoController: VillanoController;
 
     constructor() {
-        this._villainController = new VillainController();
+        this._villanoController = new VillanoController();
     }
 
     public get routes(): express.Router {
-        let controller = this._villainController;
+        let controller = this._villanoController;
         router.get('/', controller.getAll);
         router.post('/', controller.create);
-        router.put('/:_id', controller.update);
         router.get('/:_id', controller.findById);
+        router.put('/:_id', controller.update);
         router.delete('/:_id', controller.delete);
         return router
     }

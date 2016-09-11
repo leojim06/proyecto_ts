@@ -14,8 +14,8 @@ export class HeroRoutes {
         let controller = this._heroController;
         router.get('/', controller.getAll);
         router.post('/', controller.create);
-        router.put('/:_id', controller.update);
         router.get('/:_id', controller.findById);
+        router.put('/:_id', controller.update);
         router.delete('/:_id', controller.delete);
         return router
     }

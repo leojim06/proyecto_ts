@@ -7,6 +7,7 @@ const sourcemaps = require('gulp-sourcemaps');
 const nodemon = require('gulp-nodemon');
 const runSequence = require('run-sequence');
 const merge = require('merge-stream');
+const mocha = require('gulp-mocha');
 
 const libPath = './dist/public/libs';
 const angularPath = libPath + '/@angular';
@@ -85,9 +86,21 @@ gulp.task('copy:libs', function () {
     return merge(angular, rxjs);
 });
 
+gulp.task('test', function () {
+    let tsProyect = ts.createProject('server/tsconfig.json');
+    let tsResult = gulp.src('test/**/*.js')
+        .pipe(sourcemaps.init())
+        .pipe(ts(tsProyect))
+    return tsResult.js
+        .pipe(sourcemaps.write())
+        .pipe(gulp.dest('dist/test'))
+        .pipe(mocha({}));
+});
+
 gulp.task('build', function (callback) {
-    // runSequence('clean', 'build:server', 'copy:libs', 'build:client', 'deploy', callback);
-    runSequence('build:client', 'deploy', callback);
+    runSequence('clean', 'build:server', 'copy:libs', 'build:client', 'test', 'deploy', callback);
+    // runSequence('build:client', 'deploy', callback);
+    // runSequence('build:server', callback);
 });
 
 gulp.task('default', ['build']);

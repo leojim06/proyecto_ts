@@ -1,10 +1,10 @@
 import { DataAccess } from '../../../config/data_access'
-import { IVillainModel } from '../interfaces/villain-model'
+import { IVillanoModel } from '../interfaces/villano-model'
 
 let mongoose = DataAccess.mongooseInstance;
 let mongooseConnection = DataAccess.mongooseConnection;
 
-class VillainSchema {
+class VillanoSchema {
     static get schema() {
         let schema = mongoose.Schema({
             name: { type: String, required: true, unique: true },
@@ -15,5 +15,5 @@ class VillainSchema {
     }
 }
 
-const Villains = mongooseConnection.model<IVillainModel>('Villains', VillainSchema.schema);
-export = Villains;
+const Villanos = mongooseConnection.model<IVillanoModel>('Villanos', VillanoSchema.schema);
+export = Villanos;

@@ -1,9 +1,9 @@
-import { IVillainModel } from './interfaces/villain-model';
+import { IVillanoModel } from './interfaces/villano-model';
 
 export class VillainModel {
-    private _villainModel: IVillainModel;
+    private _villainModel: IVillanoModel;
 
-    constructor(villainModel: IVillainModel) {
+    constructor(villainModel: IVillanoModel) {
         this._villainModel = villainModel;
     }
 
