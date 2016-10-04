@@ -8,7 +8,7 @@ const chaiHttp = require('chai-http');
 const express = require('../../dist/config/express');
 const config = require('../../dist/config/config');
 
-const Hero = require('../../dist/app/models/schemas/hero-schema');
+const Hero = require('../../dist/app/models/schemas/HeroeModel');
 
 var server = new express.App();
 const serverURL = `http://localhost:${config.Config.PORT_TEST}`;
@@ -20,18 +20,18 @@ server.startServer(config.Config.PORT_TEST);
 
 
 describe('CRUD de Heroes -> Casos ideales', () => {
-    Hero.collection.drop();
+    Hero.Heroes.collection.drop();
     beforeEach((done) => {
         const newHero = ({
             name: 'Goku',
             power: 500,
             amountPeopleSaved: 0
         });
-        Hero.create(newHero);
+        Hero.Heroes.create(newHero);
         done();
     });
     afterEach((done) => {
-        Hero.collection.drop();
+        Hero.Heroes.collection.drop();
         done();
     });
 
@@ -147,18 +147,18 @@ describe('CRUD de Heroes -> Casos ideales', () => {
 
 
 describe('CRUD de Heroes -> Error en la solicitud', () => {
-    Hero.collection.drop();
+    Hero.Heroes.collection.drop();
     beforeEach((done) => {
         const newHero = ({
             name: 'Goku',
             power: 500,
             amountPeopleSaved: 0
         });
-        Hero.create(newHero);
+        Hero.Heroes.create(newHero);
         done();
     });
     afterEach((done) => {
-        Hero.collection.drop();
+        Hero.Heroes.collection.drop();
         done();
     });
     it('No debe agregar un heroe en /heroes POST: faltan campos', (done) => {
@@ -299,7 +299,7 @@ describe('CRUD de Heroes -> Error en la solicitud', () => {
 });
 
 describe('Base de datos vacía -> no existen registros', () => {
-    Hero.collection.drop();
+    Hero.Heroes.collection.drop();
     it('No debe listar heroes en /heroes GET', (done) => {
         chai.request(serverURL)
             .get(heroURL)
@@ -338,19 +338,19 @@ describe('Base de datos vacía -> no existen registros', () => {
 });
 
 describe('Error en el servidor - servidor desconectado', () => {
-    Hero.collection.drop();
+    Hero.Heroes.collection.drop();
     beforeEach((done) => {
         const newHero = ({
             name: 'Goku',
             power: 500,
             amountPeopleSaved: 0
         });
-        Hero.create(newHero);
+        Hero.Heroes.create(newHero);
         server.stopServer();
         done();
     });
     afterEach((done) => {
-        Hero.collection.drop();
+        Hero.Heroes.collection.drop();
         server.startServer(config.Config.PORT_TEST);
         done();
     });

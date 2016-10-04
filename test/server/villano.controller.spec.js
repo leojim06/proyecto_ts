@@ -8,7 +8,7 @@ const chaiHttp = require('chai-http');
 const express = require('../../dist/config/express');
 const config = require('../../dist/config/config');
 
-const Villano = require('../../dist/app/models/schemas/villano-schema');
+const Villano = require('../../dist/app/models/schemas/VillanoModel');
 
 var server = new express.App();
 const serverURL = `http://localhost:${config.Config.PORT_TEST}`;
@@ -20,18 +20,18 @@ server.startServer(config.Config.PORT_TEST);
 
 
 describe('CRUD de Villanos -> Casos ideales', () => {
-    Villano.collection.drop();
+    Villano.Villanos.collection.drop();
     beforeEach((done) => {
         const newVillano = ({
             name: 'Magneto',
             power: 500,
             amountPeopleKilled: 0
         });
-        Villano.create(newVillano);
+        Villano.Villanos.create(newVillano);
         done();
     });
     afterEach((done) => {
-        Villano.collection.drop();
+        Villano.Villanos.collection.drop();
         done();
     });
 
@@ -145,20 +145,19 @@ describe('CRUD de Villanos -> Casos ideales', () => {
     });
 });
 
-
 describe('CRUD de Villanos -> Error en la solicitud', () => {
-    Villano.collection.drop();
+    Villano.Villanos.collection.drop();
     beforeEach((done) => {
         const newVillano = ({
             name: 'Magneto',
             power: 500,
             amountPeopleKilled: 0
         });
-        Villano.create(newVillano);
+        Villano.Villanos.create(newVillano);
         done();
     });
     afterEach((done) => {
-        Villano.collection.drop();
+        Villano.Villanos.collection.drop();
         done();
     });
     it('No debe agregar un villano en /villanos POST: faltan campos', (done) => {
@@ -299,7 +298,7 @@ describe('CRUD de Villanos -> Error en la solicitud', () => {
 });
 
 describe('Base de datos vacía -> no existen registros', () => {
-    Villano.collection.drop();
+    Villano.Villanos.collection.drop();
     it('No debe listar villanos en /villanos GET', (done) => {
         chai.request(serverURL)
             .get(villanosURL)
@@ -338,19 +337,19 @@ describe('Base de datos vacía -> no existen registros', () => {
 });
 
 describe('Error en el servidor - servidor desconectado', () => {
-    Villano.collection.drop();
+    Villano.Villanos.collection.drop();
     beforeEach((done) => {
         const newVillano = ({
             name: 'Magneto',
             power: 500,
             amountPeopleKilled: 0
         });
-        Villano.create(newVillano);
+        Villano.Villanos.create(newVillano);
         server.stopServer();
         done();
     });
     afterEach((done) => {
-        Villano.collection.drop();
+        Villano.Villanos.collection.drop();
         server.startServer(config.Config.PORT_TEST);
         done();
     });

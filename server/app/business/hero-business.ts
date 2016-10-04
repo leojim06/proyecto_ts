@@ -1,16 +1,17 @@
 import { HeroRepository } from '../repository/hero-repository';
 import { IBaseBusiness } from './interfaces/base-business';
-import { IHeroModel } from '../models/interfaces/hero-model';
-import * as HeroSchema from '../models/schemas/hero-schema';
+import { IHeroeDocument } from '../models/interfaces/IHeroe';
+// import * as HeroSchema from '../models/schemas/hero-schema';
+import { Heroes } from '../models/schemas/HeroeModel';
 
-export class HeroBusiness implements IBaseBusiness<IHeroModel> {
+export class HeroBusiness implements IBaseBusiness<IHeroeDocument> {
     private _heroRepository: HeroRepository;
 
     constructor() {
-        this._heroRepository = new HeroRepository(HeroSchema);
+        this._heroRepository = new HeroRepository(Heroes);
     }
 
-    create(item: IHeroModel, callback: (error: any, result: any) => void) {
+    create(item: IHeroeDocument, callback: (error: any, result: any) => void) {
         this._heroRepository.create(item, callback);
     }
 
@@ -18,7 +19,7 @@ export class HeroBusiness implements IBaseBusiness<IHeroModel> {
         this._heroRepository.getAll(callback);
     }
 
-    update(_id: string, item: IHeroModel, callback: (error: any, result: any) => void) {
+    update(_id: string, item: IHeroeDocument, callback: (error: any, result: any) => void) {
         this._heroRepository.findById(_id, (err, res) => {
             if (err || !res) {
                 return callback(err, res);
@@ -36,7 +37,7 @@ export class HeroBusiness implements IBaseBusiness<IHeroModel> {
         });
     }
 
-    findById(_id: string, callback: (error: any, result: IHeroModel) => void) {
+    findById(_id: string, callback: (error: any, result: IHeroeDocument) => void) {
         this._heroRepository.findById(_id, callback);
     }
 }

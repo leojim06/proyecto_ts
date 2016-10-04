@@ -1,8 +1,8 @@
 import * as mongoose from 'mongoose';
 import { IBaseRepository } from './interfaces/base-repository';
-import { IVillanoModel } from '../models/interfaces/villano-model';
+import { IVillanoDocument } from '../models/interfaces/IVillano';
 
-export class VillanoRepository implements IBaseRepository<IVillanoModel> {
+export class VillanoRepository implements IBaseRepository<IVillanoDocument> {
     private _model: mongoose.Model<mongoose.Document>;
 
     constructor(schemaModel: mongoose.Model<mongoose.Document>) {
@@ -12,13 +12,13 @@ export class VillanoRepository implements IBaseRepository<IVillanoModel> {
     getAll(callback: (error: any, result: any) => void) {
         this._model.find({}, callback);
     }
-    create(item: IVillanoModel, callback: (error: any, rsult: any) => void) {
+    create(item: IVillanoDocument, callback: (error: any, rsult: any) => void) {
         this._model.create(item, callback);
     }
-    findById(_id: string, callback: (error: any, result: IVillanoModel) => void) {
+    findById(_id: string, callback: (error: any, result: IVillanoDocument) => void) {
         this._model.findById(_id, callback);
     }
-    update(_id: mongoose.Types.ObjectId, item: IVillanoModel, callback: (error: any, result: any) => void) {
+    update(_id: mongoose.Types.ObjectId, item: IVillanoDocument, callback: (error: any, result: any) => void) {
         this._model.update({ _id: _id }, item, callback);
     }
     delete(_id: mongoose.Types.ObjectId, callback: (error: any, result: any) => void) {

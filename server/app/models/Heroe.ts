@@ -1,9 +1,9 @@
-import { IHeroModel } from './interfaces/hero-model';
+import { IHeroeDocument } from './interfaces/IHeroe';
 
 export class HeroModel {
-    private _heroModel: IHeroModel;
+    private _heroModel: IHeroeDocument;
 
-    constructor(heroModel: IHeroModel) {
+    constructor(heroModel: IHeroeDocument) {
         this._heroModel = heroModel;
     }
 

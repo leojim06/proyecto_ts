@@ -1,7 +1,7 @@
 import * as express from 'express';
 import { HeroBusiness } from '../business/hero-business';
 import { IBaseController } from './interfaces/base-controller';
-import { IHeroModel } from '../models/interfaces/hero-model';
+import { IHeroeDocument } from '../models/interfaces/IHeroe';
 
 export class HeroController implements IBaseController<HeroBusiness> {
     getAll(req: express.Request, res: express.Response): void {
@@ -21,12 +21,12 @@ export class HeroController implements IBaseController<HeroBusiness> {
 
     create(req: express.Request, res: express.Response) {
         try {
-            let heroe: IHeroModel = <IHeroModel>req.body;
+            let heroe: IHeroeDocument = <IHeroeDocument>req.body;
             let heroBusiness = new HeroBusiness();
             heroBusiness.create(heroe, (error, result) => {
                 error ?
                     res.status(400).send({ 'ERROR': error, 'MSG': 'error en su solicitud' }) :
-                    res.status(201).send({ 'CREATED': heroe });
+                    res.status(201).send({ 'CREATED': heroe, 'RESULT': result });
             });
         } catch (error) {
             res.status(500).send({ 'SERVER_ERROR': error });
@@ -50,7 +50,7 @@ export class HeroController implements IBaseController<HeroBusiness> {
     update(req: express.Request, res: express.Response) {
         try {
             let _id: string = req.params._id;
-            let heroe: IHeroModel = <IHeroModel>req.body;
+            let heroe: IHeroeDocument = <IHeroeDocument>req.body;
             let heroBusiness = new HeroBusiness();
             heroBusiness.update(_id, heroe, (error, result) => {
                 error || (result && result.nModified === 0) ?

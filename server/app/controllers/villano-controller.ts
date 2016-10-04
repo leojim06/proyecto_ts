@@ -1,7 +1,7 @@
 import * as express from 'express';
 import { VillanoBusiness } from '../business/villano-business';
 import { IBaseController } from './interfaces/base-controller';
-import { IVillanoModel } from '../models/interfaces/villano-model';
+import { IVillanoDocument } from '../models/interfaces/IVillano';
 
 export class VillanoController implements IBaseController<VillanoBusiness> {
     getAll(req: express.Request, res: express.Response): void {
@@ -10,7 +10,7 @@ export class VillanoController implements IBaseController<VillanoBusiness> {
             villanoBusiness.getAll((error, result) => {
                 error ?
                     res.status(400).send({ 'ERROR': error, 'MSG': 'error en su solicitud' }) :
-                    result && result.length == 0 ?
+                    result && result.length === 0 ?
                         res.status(404).send({ 'ERROR': 'No existen villanos' }) :
                         res.status(200).send(result);
             });
@@ -21,12 +21,12 @@ export class VillanoController implements IBaseController<VillanoBusiness> {
 
     create(req: express.Request, res: express.Response) {
         try {
-            let villano: IVillanoModel = <IVillanoModel>req.body;
+            let villano: IVillanoDocument = <IVillanoDocument>req.body;
             let villanoBusiness = new VillanoBusiness();
             villanoBusiness.create(villano, (error, result) => {
                 error ?
                     res.status(400).send({ 'ERROR': error, 'MSG': 'error en su solicitud' }) :
-                    res.status(201).send({ 'CREATED': villano });
+                    res.status(201).send({ 'CREATED': villano, 'RESULT': result });
             });
         } catch (error) {
             res.status(500).send({ 'SERVER_ERROR': error });
@@ -50,7 +50,7 @@ export class VillanoController implements IBaseController<VillanoBusiness> {
     update(req: express.Request, res: express.Response) {
         try {
             let _id: string = req.params._id;
-            let villano: IVillanoModel = <IVillanoModel>req.body;
+            let villano: IVillanoDocument = <IVillanoDocument>req.body;
             let villanoBusiness = new VillanoBusiness();
             villanoBusiness.update(_id, villano, (error, result) => {
                 error || (result && result.nModified === 0) ?
